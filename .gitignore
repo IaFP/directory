@@ -13,3 +13,5 @@ HsDirectoryConfig.h.in
 GNUmakefile
 dist-install
 ghc.mk
+*.hs.bak
+*.hsc.bak

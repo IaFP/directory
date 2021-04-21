@@ -1,3 +1,7 @@
+{-# LANGUAGE CPP #-}
+#if __GLASGOW_HASKELL__ >= 810
+{-# LANGUAGE PartialTypeConstructors #-}
+#endif
 module System.Directory.Internal.Common where
 import Prelude ()
 import System.Directory.Internal.Prelude

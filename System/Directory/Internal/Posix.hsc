@@ -1,3 +1,7 @@
+{-# LANGUAGE CPP #-}
+#if __GLASGOW_HASKELL__ >= 810
+{-# LANGUAGE PartialTypeConstructors, TypeOperators, TypeFamilies #-}
+#endif
 module System.Directory.Internal.Posix where
 #include <HsDirectoryConfig.h>
 #if !defined(mingw32_HOST_OS)
