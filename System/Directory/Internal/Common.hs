@@ -20,7 +20,7 @@ import System.FilePath
   )
 
 -- | A generator with side-effects.
-newtype ListT m a = ListT { unListT :: m (Maybe (a, ListT m a)) }
+data ListT m a = ListT { unListT :: m (Maybe (a, ListT m a)) }
 
 emptyListT :: Applicative m => ListT m a
 emptyListT = ListT (pure Nothing)
