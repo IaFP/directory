@@ -1,3 +1,7 @@
+{-# LANGUAGE CPP #-}
+#if __GLASGOW_HASKELL__ >= 903
+{-# LANGUAGE QuantifiedConstraints, ExplicitNamespaces, TypeOperators #-}
+#endif
 module System.Directory.Internal.Common where
 import Prelude ()
 import System.Directory.Internal.Prelude
@@ -14,9 +18,17 @@ import System.FilePath
   , splitDirectories
   , splitDrive
   )
+#if MIN_VERSION_base(4,16,0)
+import GHC.Types (type (@))
+#endif
+
 
 -- | A generator with side-effects.
-newtype ListT m a = ListT { unListT :: m (Maybe (a, ListT m a)) }
+newtype
+#if MIN_VERSION_base(4,16,0)
+  m @ Maybe (a, ListT m a) => 
+#endif
+  ListT m a = ListT { unListT :: m (Maybe (a, ListT m a)) }
 
 emptyListT :: Applicative m => ListT m a
 emptyListT = ListT (pure Nothing)
